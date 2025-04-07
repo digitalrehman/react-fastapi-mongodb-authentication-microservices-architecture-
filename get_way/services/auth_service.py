@@ -1,19 +1,19 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter
 import httpx
+from models.auth_model import UserCreate, UserLogin
 
 router = APIRouter()
-AUTH_SERVICE_URL = "http://localhost:8001"  # auth_service
+AUTH_SERVICE_URL = "http://localhost:8001"
 
 @router.post("/signup")
-async def signup(request: Request):
+async def signup(request: UserCreate):
     async with httpx.AsyncClient() as client:
-        data = await request.json()
-        response = await client.post(f"{AUTH_SERVICE_URL}/signup", json=data)
+        response = await client.post(f"{AUTH_SERVICE_URL}/auth/signup", json=request.dict())
         return response.json()
 
+
 @router.post("/login")
-async def login(request: Request):
+async def login(request: UserLogin):
     async with httpx.AsyncClient() as client:
-        data = await request.json()
-        response = await client.post(f"{AUTH_SERVICE_URL}/login", json=data)
+        response = await client.post(f"{AUTH_SERVICE_URL}/auth/login", json=request.dict())
         return response.json()

@@ -1,0 +1,5 @@
+{
+    "python.pythonPath": "auth_service/venv/Scripts/python.exe",
+    "python.analysis.extraPaths": ["./auth_service/app"]
+  }
+  

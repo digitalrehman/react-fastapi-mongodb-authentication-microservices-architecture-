@@ -3,7 +3,6 @@ from app.models.auth_model import UserCreate, UserLogin
 from app.db.database import user_collection
 from app.utils.hashing import hash_password, verify_password
 from app.utils.jwt_handler import create_access_token
-
 router = APIRouter()
 
 
